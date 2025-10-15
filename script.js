@@ -116,7 +116,7 @@ function initializeCharts() {
     // Most Common Penalty Types
     const penaltyTypesCtx = document.getElementById('penaltyTypesChart').getContext('2d');
     new Chart(penaltyTypesCtx, {
-        type: 'horizontalBar',
+        type: 'bar',
         data: {
             labels: ['Fasthållning, 2 min', 'Hårt spel 2 min', 'Slag, 2 min', 'Felaktigt avstånd, 2 min', 'Otillåten trängning, 2 min'],
             datasets: [{
