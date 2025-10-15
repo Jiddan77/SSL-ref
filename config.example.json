@@ -1,0 +1,21 @@
+{
+  "description": "Example configuration for SSL API access",
+  "note": "You need to obtain fresh API tokens by running the scraper setup",
+  "api_endpoint": "https://api.innebandy.se/v2/api/matches/{match_id}",
+  "method": "GET",
+  "required_headers": {
+    "Accept": "application/json, text/plain, */*",
+    "Authorization": "Bearer YOUR_TOKEN_HERE",
+    "Referer": "https://stats.innebandy.se/",
+    "User-Agent": "Mozilla/5.0 (Your Browser Info Here)"
+  },
+  "required_cookies": {
+    "_ga": "YOUR_GA_COOKIE",
+    "_ga_78GRPDDK86": "YOUR_GA_TRACKING_COOKIE"
+  },
+  "setup_instructions": [
+    "1. Run the scraper setup to automatically obtain fresh tokens",
+    "2. The system will generate ssl_api_solution.json with working credentials",
+    "3. Tokens typically expire after a few hours and need refreshing"
+  ]
+}

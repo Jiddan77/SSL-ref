@@ -1,0 +1,8 @@
+match_id,date,home_team,away_team,referee1_id,referee1_name,referee2_id,referee2_name,player_name,team_name,is_home_team,penalty_type,penalty_code,period,minute,second,time_string,home_goals_at_time,away_goals_at_time,score_diff_at_time
+1571765,2025-09-20T14:00:00,Hovslätts IK,Mullsjö AIS,3262,Patric Terelius,395,Patrik Trofast,Adam Bäck,Hovslätts IK,True,Hårt spel 2 min,208,1,6,16,06:16,0,4,-4
+1571765,2025-09-20T14:00:00,Hovslätts IK,Mullsjö AIS,3262,Patric Terelius,395,Patrik Trofast,Filip Larsson,Hovslätts IK,True,"Otillåten trängning, 2 min",207,2,3,45,03:45,4,6,-2
+1571765,2025-09-20T14:00:00,Hovslätts IK,Mullsjö AIS,3262,Patric Terelius,395,Patrik Trofast,Noah Alex,Hovslätts IK,True,"Fasthållning, 2 min",209,2,13,27,13:27,4,7,-3
+1571765,2025-09-20T14:00:00,Hovslätts IK,Mullsjö AIS,3262,Patric Terelius,395,Patrik Trofast,Oskar Liberg,Mullsjö AIS,False,"Felaktigt avstånd, 2 min",211,3,2,14,02:14,4,9,-5
+1571765,2025-09-20T14:00:00,Hovslätts IK,Mullsjö AIS,3262,Patric Terelius,395,Patrik Trofast,Pelle Tarenius,Mullsjö AIS,False,"Felaktigt avstånd, 2 min",211,3,11,5,11:05,4,10,-6
+1571765,2025-09-20T14:00:00,Hovslätts IK,Mullsjö AIS,3262,Patric Terelius,395,Patrik Trofast,Melwin Knuthas,Hovslätts IK,True,"Slag, 2 min",201,3,16,8,16:08,4,10,-6
+1571765,2025-09-20T14:00:00,Hovslätts IK,Mullsjö AIS,3262,Patric Terelius,395,Patrik Trofast,Vilgot Kronstrand,Hovslätts IK,True,"Fasthållning, 2 min",209,3,16,8,16:08,4,10,-6

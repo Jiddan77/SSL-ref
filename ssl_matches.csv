@@ -1,0 +1,2 @@
+match_id,date,home_team_id,home_team,away_team_id,away_team,venue,referee1_id,referee1_name,referee2_id,referee2_name,home_goals,away_goals,total_penalties,home_penalties,away_penalties,spectators
+1571765,2025-09-20T14:00:00,24,Hovslätts IK,4097,Mullsjö AIS,Jönköpings Idrottshus Arenan,3262,Patric Terelius,395,Patrik Trofast,6,12,7,5,2,1205
