@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL Referee Bias Analysis</title>
+    <meta name="description" content="Statistical analysis of referee behavioral patterns in Swedish Floorball (SSL) to promote transparency and fairness in officiating.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏒</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🏒</span>
+                    <h1>SSL Referee Analysis</h1>
+                </div>
+                <nav class="nav">
+                    <a href="#overview" class="nav-link">Overview</a>
+                    <a href="#referees" class="nav-link">Referees</a>
+                    <a href="#insights" class="nav-link">Insights</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="https://github.com/Jiddan77/SSL-ref" class="nav-link github-link" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Promoting Transparency in Swedish Floorball</h2>
+                <p>Statistical analysis of referee behavioral patterns in SSL to identify potential biases and improve officiating consistency.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="total-matches">35</span>
+                        <span class="stat-label">Matches Analyzed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="total-referees">22</span>
+                        <span class="stat-label">Referees Evaluated</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="total-penalties">72</span>
+                        <span class="stat-label">Penalties Tracked</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="bias-observations">16</span>
+                        <span class="stat-label">Bias Observations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">Analysis Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="card-icon">⚖️</div>
+                    <h3>Home/Away Bias</h3>
+                    <p>Analyzing penalty distribution patterns to identify referees who consistently favor home or away teams.</p>
+                    <div class="metric">
+                        <span class="metric-value">48.6%</span>
+                        <span class="metric-label">League Average Home Penalty Rate</span>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Penalty Rate Analysis</h3>
+                    <p>Identifying unusually strict or lenient referees based on penalties called per match.</p>
+                    <div class="metric">
+                        <span class="metric-value">2.6</span>
+                        <span class="metric-label">Average Penalties per Match</span>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="card-icon">⏰</div>
+                    <h3>Timing Patterns</h3>
+                    <p>Detecting when referees make decisions during games and identifying late-game management styles.</p>
+                    <div class="metric">
+                        <span class="metric-value">33%</span>
+                        <span class="metric-label">Period 3 Penalty Average</span>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Penalty Type Preferences</h3>
+                    <p>Identifying referee specializations and preferences for calling specific penalty types.</p>
+                    <div class="metric">
+                        <span class="metric-value">5</span>
+                        <span class="metric-label">Main Penalty Categories</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Statistical Insights</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Home vs Away Penalty Distribution</h3>
+                    <canvas id="homeAwayChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Penalties by Period</h3>
+                    <canvas id="periodChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Most Common Penalty Types</h3>
+                    <canvas id="penaltyTypesChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Referee Penalty Rate Distribution</h3>
+                    <canvas id="refereeRatesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referees Section -->
+    <section id="referees" class="section">
+        <div class="container">
+            <h2 class="section-title">Referee Analysis</h2>
+            <div class="referees-filter">
+                <button class="filter-btn active" data-filter="all">All Referees</button>
+                <button class="filter-btn" data-filter="bias">With Bias Observations</button>
+                <button class="filter-btn" data-filter="strict">Strict Referees</button>
+                <button class="filter-btn" data-filter="lenient">Lenient Referees</button>
+            </div>
+            <div id="referees-list" class="referees-grid">
+                <!-- Referee cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Insights Section -->
+    <section id="insights" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Key Findings</h2>
+            <div class="insights-grid">
+                <div class="insight-card severity-medium">
+                    <div class="insight-header">
+                        <span class="severity-badge medium">🟠 Medium</span>
+                        <h3>Late Game Management</h3>
+                    </div>
+                    <p><strong>Patrik Trofast</strong> calls 66.7% of penalties in the final period, suggesting a "late game management" officiating style.</p>
+                    <div class="insight-stats">
+                        <span>5 matches analyzed</span> • <span>9 total penalties</span>
+                    </div>
+                </div>
+                
+                <div class="insight-card severity-medium">
+                    <div class="insight-header">
+                        <span class="severity-badge medium">🟠 Medium</span>
+                        <h3>Unusually Strict</h3>
+                    </div>
+                    <p><strong>Martin Jonsson</strong> calls 5.0 penalties per match vs league average of 2.6, indicating a strict officiating approach.</p>
+                    <div class="insight-stats">
+                        <span>1 match analyzed</span> • <span>5 total penalties</span>
+                    </div>
+                </div>
+                
+                <div class="insight-card severity-medium">
+                    <div class="insight-header">
+                        <span class="severity-badge medium">🟠 Medium</span>
+                        <h3>Away Team Bias</h3>
+                    </div>
+                    <p><strong>David Dornlöv</strong> shows significant bias against away teams with -33.3% home penalty rate.</p>
+                    <div class="insight-stats">
+                        <span>4 matches analyzed</span> • <span>6 total penalties</span>
+                    </div>
+                </div>
+                
+                <div class="insight-card severity-low">
+                    <div class="insight-header">
+                        <span class="severity-badge low">🟡 Low</span>
+                        <h3>Penalty Type Specialization</h3>
+                    </div>
+                    <p>Several referees show strong preferences for specific penalty types, with some calling 100% of one penalty type.</p>
+                    <div class="insight-stats">
+                        <span>Multiple referees</span> • <span>Pattern identified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About This Analysis</h2>
+                    <p>This system analyzes publicly available SSL match data to identify statistical patterns in referee decision-making. Our goal is to promote transparency and consistency in floorball officiating.</p>
+                    
+                    <h3>Methodology</h3>
+                    <ul>
+                        <li>Data collected from official SSL match statistics</li>
+                        <li>Statistical significance testing for all bias claims</li>
+                        <li>Focus on patterns, not individual performance</li>
+                        <li>Continuous updates as new matches are played</li>
+                    </ul>
+                    
+                    <h3>Ethical Guidelines</h3>
+                    <p>This analysis is designed to support the floorball community by improving officiating consistency. It should not be used for personal attacks on referees or for gambling purposes.</p>
+                </div>
+                
+                <div class="about-stats">
+                    <h3>Latest Update</h3>
+                    <div class="update-info">
+                        <div class="update-item">
+                            <span class="update-label">Data Period:</span>
+                            <span class="update-value">Sep 20 - Oct 12, 2025</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-label">Season:</span>
+                            <span class="update-value">SSL 2025/26</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-label">Next Update:</span>
+                            <span class="update-value">Weekly</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://github.com/Jiddan77/SSL-ref" class="btn btn-primary" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <a href="#" class="btn btn-secondary" onclick="downloadData()">
+                            <i class="fas fa-download"></i> Download Data
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SSL Referee Analysis</h4>
+                    <p>Promoting transparency and fairness in Swedish floorball officiating through data-driven insights.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/Jiddan77/SSL-ref">GitHub Repository</a></li>
+                        <li><a href="https://github.com/Jiddan77/SSL-ref/blob/main/CONTRIBUTING.md">Contributing Guide</a></li>
+                        <li><a href="https://github.com/Jiddan77/SSL-ref/issues">Report Issues</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Questions or suggestions? Open an issue on GitHub or reach out to the maintainers.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 SSL Referee Analysis Project. Licensed under MIT License.</p>
+                <p>Data sourced from publicly available SSL match statistics.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
